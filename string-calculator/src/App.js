@@ -1,23 +1,26 @@
-import logo from './logo.svg';
+import { useCallback, useState } from 'react';
 import './App.css';
 
 function App() {
+  const [input, setInput] = useState('');
+
+  const calculate = useCallback(() => {
+   // Calculate handler
+   console.log('input value', input);
+  }, [input]);
+
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+      <div className="calculator">
+        <h2>String Calculator</h2>
+        <input
+          type="text"
+          value={input}
+          onChange={(e) => setInput(e.target.value)}
+          placeholder="Enter numbers"
+        />
+        <button onClick={calculate}>Calculate</button>
+      </div>
     </div>
   );
 }
